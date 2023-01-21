@@ -1,0 +1,118 @@
+ข้อ1
+a)the program uses a backtracking algorithm to solve cryptarithmetic puzzles. it takes 3 inputs from the user, two numbers to be added and their sum, represented by letters of the alphabet, and finds all possible solutions for the puzzle. the program first adds all the letters of the input strings to a list of letters, then in the matchwithletters() function it starts assigning digits to the letters starting from the leftmost letter.
+
+the matchwithletters() function takes two parameters, an array of digits and an index. the function starts by assigning the first digit from the array to the letter at the given index. then it recursively calls itself with the next index, and assigns the next digit to the next letter. after assigning all the digits to the letters, it checks if the equation holds true using the sumworks() function. if it holds true, it prints the solution, otherwise it backtracks and assigns the next digit to the current letter.
+
+the program then continues this process until all possible combinations of letters and digits are checked and all solutions are found. the program prints all the solutions and also calculates the time taken to find all the solutions.
+
+a) The CryptArithmetic.java program is a Java implementation of a cryptarithmetic puzzle solver. The program takes an equation in the form of a string, where unknown numbers are represented by letters of the alphabet, and uses backtracking to find all possible solutions for the puzzle. The program includes a function called matchWithLetters() that currently serves as a placeholder for the backtracking algorithm. The task is to replace this function with one that uses backtracking to generate all the possible solutions for the puzzle. Screenshots of the program running should be included to demonstrate the program's functionality.
+
+b) Two other cryptarithmetic puzzles using addition that can be tested on the code are:
+
+SEND + MORE = MONEY
+DAD + MUM = FAMILY
+c) The same answers are printed more than once because the program is not keeping track of the letters used in the previous solutions. So, if the same letter is used twice in the puzzle, the program will print the same solution multiple times.
+
+ข้อ2
+The given recurrence relation is in the form of a divide-and-conquer algorithm with a constant time operation.
+
+Using the master theorem, we can determine the time complexity of the algorithm.
+
+T(n) = aT(n/b) + f(n)
+
+where:
+
+a is the number of subproblems (in this case, 3)
+b is the rate at which the subproblem size is reduced (in this case, 2)
+f(n) is the time complexity of the constant time operation (in this case, O(1))
+In this case, a=3, b=2 and f(n) = O(1)
+
+We can see that a > b^f(n) (3 > 2^1), so the time complexity of the algorithm is T(n) = O(n^log_b a) = O(n^log_2 3) = O(n^1.58) which is approximately O(n^1)
+
+So the big-oh expression of T(n) = 3T(n/2) + O(1) is O(n^1)
+
+ข้อ3
+a) The quicksort algorithm is a divide-and-conquer algorithm that sorts an array by selecting a pivot element and partitioning the array into two sub-arrays: one with elements less than the pivot, and one with elements greater than the pivot. The pivot element is then in its final sorted position. The algorithm recursively sorts the sub-arrays until the entire array is sorted.
+
+A possible diagram of how the quicksort algorithm can sort an array containing {A, N, D, R, E, W} into increasing alphabetical order:
+
+[A, D, R, E, W] [N]
+
+[A, D, E, R] [W]
+
+[A, D, E] [R]
+
+[A, D] [E]
+
+[A] [D]
+
+[] [A, D, E, R, W, N]
+
+b) The quicksort algorithm starts by selecting a pivot element, in this case let's pick N.
+The algorithm then partition the array into two sub-arrays, one with elements less than the pivot N and one with elements greater than the pivot N. The pivot N is then in its final sorted position.
+After that, the algorithm recursively sorts the left and right sub-arrays until the entire array is sorted.
+
+In this diagram, the algorithm first partition the array into {A, D, R, E, W} and [N]. Then it recursively sorts the left part {A, D, R, E, W} into {A, D, E, R} and {W} and right part [N] doesn't need to be sorted.
+Finally, it merge the two sorted sub-arrays {A, D, E, R, W} and [N] into the final sorted array [A, D, E, R, W, N].
+
+ข้อ4
+a)The RadixSort program is an implementation of the radix sort algorithm in Java. The program takes an array of integers as input and sorts them in increasing order. The radix sort algorithm is a non-comparison based sorting algorithm that sorts the elements by grouping them according to their digits (digits are considered right to left).
+
+The program first finds the maximum value in the input array and calculates the number of digits in the maximum value. Then, the radixSort() function starts a loop that runs for the number of digits in the maximum value. In each iteration of the loop, the function calls the countSort() function, passing the input array and the current place value as parameters.
+
+The countSort() function uses counting sort to sort the elements of the input array based on the current place value. The function starts by creating an array of counts and initializing it to zero. Then it counts the occurrences of each digit in the current place value and stores it in the counts array. Next, the function modifies the counts array so that it contains the sum of earlier counts, which will be equivalent to the position of the digit in the sorted array.
+
+The function then builds the sorted array in reverse order to make the sort stable. Finally, the function copies the sorted array back to the input array and the loop continues until all the digits are considered.
+
+In this way, Radix sort sorts the input array by grouping the digits and counting the occurrences of each digit and arranging them in the correct order. It starts from the least significant digit and proceeds to the most significant digit.\
+
+b)The GetStuds program is a Java program that reads a text file and extracts a list of student IDs from it. The program takes the name of the text file as a command-line argument when it is run.
+
+The main() function starts by checking if the correct number of command-line arguments has been passed to the program. If not, it prints an error message and exits. Otherwise, it calls the readLines() function and passes the name of the text file as an argument.
+
+The readLines() function uses a BufferedReader to read the lines of the text file and stores them in an ArrayList. If the file is successfully read, the function prints the number of lines read and returns the ArrayList. If an error occurs, the function prints an error message and returns null.
+
+The main() function then creates an array of longs with the same number of elements as the ArrayList and uses a loop to iterate through the ArrayList, calling the getLong() function for each element. The getLong() function attempts to parse each element as a long and returns the long value if successful. If it fails to parse the element, it prints an error message and returns -1.
+
+The program then prints the number of student IDs and the sorted array of student IDs.
+
+In summary, the GetStuds program reads a text file, extract the student IDs from it, store them in an array and print the number of student IDs and the sorted array of student IDs.
+
+c)In order to combine RadixSort.java and GetStuds.java to sort student IDs using a radix sort, you can copy the radixSort() and countSort() functions from RadixSort.java and paste them into the main() function of GetStuds.java. Then, you can replace the array of integers in the radixSort() function call with the studs array, which contains the student IDs.
+
+It would look something like this:
+    ArrayList<String> lines = readLines(args[0]);
+    if (lines == null)
+      return;
+
+    long[] studs = new long[lines.size()];
+    for (int i = 0; i < studs.length; i++)
+      studs[i] = getLong(lines.get(i));
+
+    System.out.println("No. of students IDs: " + studs.length);
+    radixSort(studs);
+    System.out.println("Sorted student IDs: " + Arrays.toString(studs));
+
+This new program, called RadixStuds.java, will read a text file containing student IDs, store them in an array, sort the array using the radix sort algorithm and print the sorted array of student IDs. The Radix sort algorithm sorts the input array by grouping the digits and counting the occurrences of each digit and arranging them in the correct order.
+
+It starts from the least significant digit and proceeds to the most significant digit. The program first finds the maximum value in the input array and calculates the number of digits in the maximum value. Then, the radixSort() function starts a loop that runs for the number of digits in the maximum value. In each iteration of the loop, the function calls the countSort() function, passing the input array and the current place value as parameters.
+
+The countSort() function uses counting sort to sort the elements of the input array based on the current place value. The function starts by creating an array of counts and initializing it to zero. Then it counts the occurrences of each digit in the current place value and stores it in the counts array. Next, the function modifies the counts array so that it contains the sum of earlier counts, which will be equivalent to the position of the digit in the sorted array.
+
+The function then builds the sorted array in reverse order to make the sort stable. Finally, the function copies the sorted array back to the input array and the loop continues until all the digits are considered.
+
+In this way, RadixStuds program reads a text file containing student IDs, stores them in an array, sorts the array using the radix sort algorithm and prints the sorted array of student IDs.
+
+d)The optimization that can roughly triple the speed of the radix sort in this case is to sort the student IDs based on their length before performing the radix sort.
+The reason why this optimization will speed up the radix sort is that, in the radix sort algorithm, the time complexity is dependent on the number of digits in the largest number in the input array. If the input array contains numbers of varying lengths, the algorithm will have to perform multiple passes for each digit place, leading to a longer running time. However, if the input array contains only numbers with the same number of digits, the algorithm will only have to perform one pass for each digit place, leading to a shorter running time.
+By sorting the student IDs based on their length before performing the radix sort, you ensure that all the student IDs have the same number of digits, leading to a faster radix sort.
+
+ข้อ5
+b)b) The big-Oh for the power() function is O(n) because the function makes n recursive calls, and each call takes O(1) time to return. The total time complexity is O(n) as the number of recursive calls are directly proportional to the input value n.
+
+c)This implementation of the power function uses a divide-and-conquer technique where it repeatedly divides the exponent by 2 until it reaches the base case of n = 0. Then it uses the result of the previous divisions to calculate the final result.
+This implementation reduces the time complexity to O(log n) because at each recursive call, the exponent is divided by 2 and the number of recursive calls is logarithmically related to the input value n.
+
+d)The big-Oh for the second power() function is O(log n) because at each recursive call, the exponent is divided by 2 and the number of recursive calls is logarithmically related to the input value n.
+This implementation is faster than the first version because at each recursive call it makes, it reduces the problem size by half, which means that the number of recursive calls is logarithmically related to the input value n.
+In contrast, the first version makes n recursive calls, and the number of calls are directly proportional to the input value n. This means that the first version takes O(n) time complexity whereas the second one takes O(log n) which is faster for large value of n.
