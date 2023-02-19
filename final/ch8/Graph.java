@@ -39,42 +39,66 @@ public class Graph {
         graph[7].add(9);
         graph[8].add(6);
         graph[8].add(9);
-     
 
         graph[9].add(8);
 
         boolean[] visited = new boolean[n];
+        int[] depth = new int[n];
         Graph traversal = new Graph();
 
-        System.out.println("DFS traversal:");
-        traversal.DFS(0, graph, visited);
+        System.out.println("\nDFS traversal:");
+        traversal.DFS(0, graph, visited, depth);
+
+        int deepestNode = findDeepestNode(depth);
+        int numEdgesToDeepestNode = depth[deepestNode];
+
+        System.out.println("\nNumber of edges to deepest node: " + numEdgesToDeepestNode);
 
         Arrays.fill(visited, false); // reset visited array
+        Arrays.fill(depth, 0); // reset depth array
 
         System.out.println("\nBFS traversal:");
-        traversal.BFS(0, graph, visited);
+        traversal.BFS(0, graph, visited, depth);
+
+        deepestNode = findDeepestNode(depth);
+        numEdgesToDeepestNode = depth[deepestNode];
+
+        System.out.println("\nNumber of edges to deepest node: " + numEdgesToDeepestNode);
     }
 
-    public void DFS(int start, List<Integer>[] graphs, boolean[] visited) {
+    public static int findDeepestNode(int[] depth) {
+        int deepestNode = 0;
+        for (int i = 1; i < depth.length; i++) {
+            if (depth[i] > depth[deepestNode]) {
+                deepestNode = i;
+            }
+        }
+        return deepestNode;
+    }
+
+    public void DFS(int start, List<Integer>[] graphs, boolean[] visited, int[] depth) {
         visited[start] = true;
         System.out.print(start + " ");
         for (int neighbor : graphs[start]) {
             if (!visited[neighbor]) {
-                DFS(neighbor, graphs, visited);
+                depth[neighbor] = depth[start] + 1;
+                DFS(neighbor, graphs, visited, depth);
             }
         }
     }
-    
-    public void BFS(int start, List<Integer>[] graphs, boolean[] visited) {
+
+    public void BFS(int start, List<Integer>[] graphs, boolean[] visited, int[] depth) {
         Queue<Integer> queue = new LinkedList<>();
         visited[start] = true;
         queue.offer(start);
+        depth[start] = 0;
         while (!queue.isEmpty()) {
             int node = queue.poll();
             System.out.print(node + " ");
             for (int neighbor : graphs[node]) {
                 if (!visited[neighbor]) {
                     visited[neighbor] = true;
+                    depth[neighbor] = depth[node] + 1;
                     queue.offer(neighbor);
                 }
             }
