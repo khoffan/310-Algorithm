@@ -1,3 +1,5 @@
+package ch6;
+
 public class Knapsack {
     static int knapsack(int w, int n, int[] weight, int[] value) {
         int[][] dp = new int[n + 1][w + 1];
