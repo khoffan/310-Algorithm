@@ -39,7 +39,8 @@ public class Graph {
         graph[7].add(9);
         graph[8].add(6);
         graph[8].add(9);
-
+        graph[9].add(6);
+        graph[9].add(9);
         graph[9].add(8);
 
         boolean[] visited = new boolean[n];
