@@ -114,3 +114,5 @@ class Data {
     }
 
 }
+
+// give me code example for STP of diijstra algorithm
